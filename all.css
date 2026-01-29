@@ -1,0 +1,67 @@
+body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #f8f9fa, #e9f2ff);
+    min-height: 100vh;
+}
+
+#btnOne {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3px;
+    text-decoration: none;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgb(122, 165, 233);
+    font-size: larger;
+    color: white;
+    gap: 2px;
+}
+#btnOne:hover {
+    background-color: rgb(40, 82, 149);
+}
+
+#btnTwo {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3px;
+    text-decoration: none;
+    width: 100%;
+    border-color: rgb(52, 95, 164);
+    border-radius: 10px;
+    padding: 10px;
+    background-color: white;
+    font-size: larger;
+    color: rgb(122, 165, 233);
+    gap: 2px;
+}
+
+#btnTwo:hover {
+    background-color: rgb(40, 82, 149);
+    color: white;
+}
+
+#shinaBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3px;
+    text-decoration: none;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgb(122, 165, 233);
+    font-size: larger;
+    color: white;
+    gap: 2px;
+}
+#shinaBtn:hover {
+    background-color: rgb(40, 82, 149);
+}
