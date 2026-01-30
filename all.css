@@ -1,88 +1,105 @@
 body {
-    font-family: "Poppins", sans-serif;
-    background: linear-gradient(135deg, #f8f9fa, #e9f2ff);
-    min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #f8f9fa, #e9f2ff);
+  min-height: 100vh;
 }
 
 #btnOne {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 3px;
-    text-decoration: none;
-    cursor: pointer;
-    width: 100%;
-    border: none;
-    border-radius: 10px;
-    padding: 10px;
-    background-color: rgb(122, 165, 233);
-    font-size: larger;
-    color: white;
-    gap: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3px;
+  text-decoration: none;
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgb(122, 165, 233);
+  font-size: larger;
+  color: white;
+  gap: 2px;
+  transition: all 0.3s ease;
 }
 #btnOne:hover {
-    background-color: rgb(40, 82, 149);
+  background-color: rgb(40, 82, 149);
 }
 
 #btnTwo {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 3px;
-    text-decoration: none;
-    width: 100%;
-    border-color: rgb(52, 95, 164);
-    border-radius: 10px;
-    padding: 10px;
-    background-color: white;
-    font-size: larger;
-    color: rgb(122, 165, 233);
-    gap: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3px;
+  text-decoration: none;
+  width: 100%;
+  border-color: rgb(52, 95, 164);
+  border-radius: 10px;
+  padding: 10px;
+  background-color: white;
+  font-size: larger;
+  color: rgb(122, 165, 233);
+  gap: 2px;
+  transition: all 0.3s ease;
 }
 
 #btnTwo:hover {
-    background-color: rgb(40, 82, 149);
-    color: white;
+  background-color: rgb(40, 82, 149);
+  color: white;
 }
 
 #shinaBtn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 3px;
-    text-decoration: none;
-    cursor: pointer;
-    width: 100%;
-    border: none;
-    border-radius: 10px;
-    padding: 10px;
-    background-color: rgb(122, 165, 233);
-    font-size: larger;
-    color: white;
-    gap: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3px;
+  text-decoration: none;
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgb(122, 165, 233);
+  font-size: larger;
+  color: white;
+  gap: 2px;
+  transition: all 0.3s ease;
+
 }
 #shinaBtn:hover {
-    background-color: rgb(40, 82, 149);
+  background-color: rgb(40, 82, 149);
 }
 
 .text-muted {
-    color: #6c757d;
-  }
-  
-  .progress {
-    height: 12px;
-  }
-  
-  .success-green {
-    color: #198754;
-  }
-  
-  .mb-16 {
-    margin-bottom: 16px;
-  }
-  
-  .full-height {
-    min-height: 100vh;
-  }
-  
+  color: #6c757d;
+}
+
+.progress {
+  height: 12px;
+}
+
+.success-green {
+  color: #198754;
+}
+
+.mb-16 {
+  margin-bottom: 16px;
+}
+
+.full-height {
+  min-height: 100vh;
+}
+
+#voterLogBtn {
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: white;
+  text-decoration: none;
+  color: rgb(40, 82, 149);
+  transition: all 0.3s ease;
+}
+#voterLogBtn:hover {
+  background-color: rgb(40, 82, 149);
+  color: white;
+}
