@@ -90,7 +90,7 @@ body {
   min-height: 100vh;
 }
 
-#voterLogBtn {
+.voterLogBtn {
   border: none;
   border-radius: 10px;
   padding: 10px;
@@ -99,7 +99,7 @@ body {
   color: rgb(40, 82, 149);
   transition: all 0.3s ease;
 }
-#voterLogBtn:hover {
+.voterLogBtn:hover {
   background-color: rgb(40, 82, 149);
   color: white;
 }
