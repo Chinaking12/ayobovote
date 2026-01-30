@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE php>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -27,7 +27,7 @@
     <nav class="navbar navbar-dark shadow-sm bg-danger">
       <div class="container">
         <span class="navbar-brand mb-0 h1">Admin Dashboard</span>
-        <a href="login.html" class="btn btn-outline-light">Logout</a>
+        <a href="login.php" class="btn btn-outline-light">Logout</a>
       </div>
     </nav>
 
@@ -87,11 +87,11 @@
               <h5 class="mb-0 fw-bold">Quick Actions</h5>
             </div>
             <div class="card-body">
-              <button class="btn btn-primary w-100 mb-3">
+              <a href="admin_create_candidate.php" class="btn btn-primary w-100 mb-3 text-decoration-none">
                 Add New Candidate
-              </button>
-              <button class="btn btn-success w-100 mb-3">Register Voter</button>
-              <a href="results.html" class="btn btn-warning w-100 mb-3"
+              </a>
+              <a href="admin_register_voter.php" class="btn btn-success w-100 mb-3 text-decoration-none">Register Voter</a>
+              <a href="results.php" class="btn btn-warning w-100 mb-3"
                 >View Live Results</a
               >
               <button class="btn btn-danger w-100">End Voting Session</button>

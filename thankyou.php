@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE php>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -13,7 +13,7 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
-  <link rel="stylesheet" href="../all.css" />
+  <link rel="stylesheet" href="all.css" />
 
   <title>Vote Successful</title>
 </head>
@@ -36,11 +36,11 @@
           Results will be announced after the voting period ends.
         </p>
 
-        <a href="results.html" class="btn btn-primary btn-lg me-3">
+        <a href="results.php" class="btn btn-primary btn-lg me-3">
           View Results
         </a>
 
-        <a href="index.html" class="btn btn-outline-secondary btn-lg">
+        <a href="index.php" class="btn btn-outline-secondary btn-lg">
           Exit
         </a>
 

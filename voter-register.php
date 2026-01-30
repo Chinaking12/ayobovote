@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE php>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -21,7 +21,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
     />
-    <link rel="stylesheet" href="../all.css" />
+    <link rel="stylesheet" href="all.css" />
 
     <title>Voter Registration | Ayobo Community</title>
   </head>
@@ -31,7 +31,7 @@
       <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
           <!-- Back to Home -->
-          <a href="index.html" class="btn btn-link text-decoration-none mb-3">
+          <a href="index.php" class="btn btn-link text-decoration-none mb-3">
             <i class="bi bi-chevron-left me-1"></i>
             Back to Home
           </a>

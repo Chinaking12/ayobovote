@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE php>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -23,7 +23,7 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
     />
 
-    <link rel="stylesheet" href="../all.css" />
+    <link rel="stylesheet" href="all.css" />
     <title>Ayobo Community | Online Voting System</title>
   </head>
 
@@ -62,12 +62,12 @@
               <div class="card-body p-4">
                 <h5 class="card-title mb-4 text-center">Choose Your Role</h5>
 
-                <a href="voter-login.html" id="btnOne">
+                <a href="voter-login.php" id="btnOne">
                   <i class="bi bi-person"></i>
                   Voter Login
                 </a>
 
-                <a href="admin-login.html" id="btnTwo">
+                <a href="admin-login.php" id="btnTwo">
                   <i class="bi bi-lock"></i>
                   Admin Login
                 </a>
@@ -77,7 +77,7 @@
             <div class="text-center">
               <p class="text-muted">
                 Don't have an account?
-                <a href="voter-register.html" class="btn btn-link text-primary p-0 ms-2">
+                <a href="voter-register.php" class="btn btn-link text-primary p-0 ms-2">
                   Register here
                 </a>
               </p>

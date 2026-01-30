@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE php>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -35,7 +35,7 @@
       >
         <div class="col-md-6 col-lg-5">
           <!-- Back to Home -->
-          <a href="index.html" class="btn btn-link text-decoration-none mb-3">
+          <a href="index.php" class="btn btn-link text-decoration-none mb-3">
             <i class="bi bi-chevron-left me-1"></i>
             Back to Home
           </a>
@@ -60,6 +60,7 @@
                   <label class="form-label">Username</label>
                   <input
                     type="text"
+                    name="username"
                     class="form-control form-control-lg"
                     placeholder="Enter admin username"
                   />
@@ -69,12 +70,13 @@
                   <label class="form-label">Password</label>
                   <input
                     type="password"
+                    name="password"
                     class="form-control form-control-lg"
                     placeholder="Enter admin password"
                   />
                 </div>
 
-                <button type="submit" class="btn btn-danger btn-lg w-100">
+                <button type="submit" name="submit" class="btn btn-danger btn-lg w-100">
                   <i class="bi bi-box-arrow-in-right me-2"></i>
                   Admin Login
                 </button>

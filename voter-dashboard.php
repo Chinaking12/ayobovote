@@ -22,7 +22,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
     />
-    <link rel="stylesheet" href="../all.css" />
+    <link rel="stylesheet" href="all.css" />
 
     <title>Vote | Ayobo Community</title>
   </head>
@@ -101,7 +101,7 @@
       <form action="" method="post">
         <div class="row mt-5">
           <div class="col text-center">
-            <button class="btn btn-primary btn-lg px-5">
+            <button name="btn" type="submit" class="btn btn-primary btn-lg px-5">
               <i class="bi bi-check2-square me-2"></i>
               Submit Vote
             </button>

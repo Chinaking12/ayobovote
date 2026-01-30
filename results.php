@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE php>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -17,7 +17,7 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../all.css" />
+    <link rel="stylesheet" href="all.css" />
     <title>Voting Results</title>
   </head>
 
@@ -26,7 +26,7 @@
     <nav class="navbar navbar-dark shadow-sm bg-primary">
       <div class="container">
         <span class="navbar-brand mb-0 h1">Voting Results</span>
-        <a href="dashboard.html" class="btn btn-outline-light">
+        <a href="dashboard.php" class="btn btn-outline-light">
           Back to Dashboard
         </a>
       </div>

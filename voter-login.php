@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE php>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -36,7 +36,7 @@
         <div class="col-md-6 col-lg-5">
           <!-- Back to Home -->
           <a
-            href="index.html"
+            href="index.php"
             class="btn btn-link text-decoration-none mb-3"
             style="color: rgb(122, 165, 233)"
           >
@@ -65,6 +65,7 @@
                   <label class="form-label">Voter ID</label>
                   <input
                     type="text"
+                    name="id"
                     class="form-control form-control-lg"
                     placeholder="Enter your voter ID"
                   />
@@ -74,12 +75,13 @@
                   <label class="form-label">Password</label>
                   <input
                     type="password"
+                    name="password"
                     class="form-control form-control-lg"
                     placeholder="Enter your password"
                   />
                 </div>
 
-                <button type="submit" id="shinaBtn">
+                <button type="submit" name="btn" id="shinaBtn">
                   <i class="bi bi-box-arrow-in-right me-2"></i>
                   Login to Vote
                 </button>
@@ -88,7 +90,7 @@
               <!-- Register -->
               <div class="text-center">
                 <a
-                  href="voter-register.html"
+                  href="voter-register.php"
                   class="btn btn-link text-decoration-none"
                 >
                   Don’t have an account? Register
