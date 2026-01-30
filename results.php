@@ -18,7 +18,6 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../all.css" />
-
     <title>Voting Results</title>
   </head>
 

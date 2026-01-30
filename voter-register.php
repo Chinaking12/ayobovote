@@ -53,12 +53,15 @@
               </div>
 
               <!-- Form -->
-              <form action="" method="">
+              <form
+                action="../process/process_voter_register.php"
+                method="post"
+              >
                 <div class="mb-3">
                   <label class="form-label">Full Name</label>
                   <input
                     type="text"
-                    
+                    name="fullname"
                     class="form-control"
                     placeholder="Enter your full name"
                     required
@@ -70,6 +73,7 @@
                   <input
                     type="email"
                     class="form-control"
+                    name="email"
                     placeholder="your.email@example.com"
                     required
                   />
@@ -80,6 +84,7 @@
                   <input
                     type="tel"
                     class="form-control"
+                    name="telephone"
                     placeholder="080XXXXXXXX"
                     required
                   />
@@ -90,6 +95,7 @@
                   <textarea
                     class="form-control"
                     rows="2"
+                    name="address"
                     placeholder="Your residential address"
                     required
                   ></textarea>
@@ -100,6 +106,7 @@
                   <input
                     type="password"
                     class="form-control"
+                    name="password"
                     placeholder="Create a password"
                     required
                   />
@@ -110,12 +117,17 @@
                   <input
                     type="password"
                     class="form-control"
+                    name="confirmP"
                     placeholder="Confirm your password"
                     required
                   />
                 </div>
 
-                <button type="submit" class="btn btn-success btn-lg w-100">
+                <button
+                  type="submit"
+                  name="btn"
+                  class="btn btn-success btn-lg w-100"
+                >
                   <i class="bi bi-person-plus-fill me-2"></i>
                   Register
                 </button>
