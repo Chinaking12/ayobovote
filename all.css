@@ -65,3 +65,24 @@ body {
 #shinaBtn:hover {
     background-color: rgb(40, 82, 149);
 }
+
+.text-muted {
+    color: #6c757d;
+  }
+  
+  .progress {
+    height: 12px;
+  }
+  
+  .success-green {
+    color: #198754;
+  }
+  
+  .mb-16 {
+    margin-bottom: 16px;
+  }
+  
+  .full-height {
+    min-height: 100vh;
+  }
+  

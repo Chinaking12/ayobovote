@@ -28,5 +28,86 @@
   </head>
 
   <body>
+    <div>
+      <nav className="navbar navbar-dark shadow-sm" style={{ backgroundColor: '#dc3545' }}>
+          <div className="container">
+              <span className="navbar-brand mb-0 h1">Admin Dashboard</span>
+              <button className="btn btn-outline-light" onClick={handleLogout}>
+                  Logout
+              </button>
+          </div>
+      </nav>
+
+      <div className="container py-5">
+          <h2 className="fw-bold mb-4">Dashboard Overview</h2>
+
+          <div className="row g-4 mb-5">
+              {statsDisplay.map((stat, index) => (
+                  <div key={index} className="col-md-4">
+                      <div className="card shadow-sm border-0 h-100">
+                          <div className="card-body">
+                              <div className="d-flex align-items-center">
+                                  <div style={{
+                                      backgroundColor: `${stat.color}20`,
+                                      padding: '12px',
+                                      borderRadius: '8px',
+                                      marginRight: '16px'
+                                  }}>
+                                      <stat.icon size={32} style={{ color: stat.color }} />
+                                  </div>
+                                  <div>
+                                      <h6 style={{ color: '#6c757d' }} className="mb-1">{stat.label}</h6>
+                                      <h3 className="fw-bold mb-0">{stat.value}</h3>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              ))}
+          </div>
+
+          <div className="row g-4">
+              <div className="col-lg-6">
+                  <div className="card shadow-sm border-0">
+                      <div className="card-header bg-white">
+                          <h5 className="mb-0 fw-bold">Quick Actions</h5>
+                      </div>
+                      <div className="card-body">
+                          <button className="btn btn-primary w-100 mb-3">Add New Candidate</button>
+                          <button className="btn btn-success w-100 mb-3">Register Voter</button>
+                          <button className="btn btn-warning w-100 mb-3" onClick={() => navigate('/results')}>
+                              View Live Results
+                          </button>
+                          <button className="btn btn-danger w-100">End Voting Session</button>
+                      </div>
+                  </div>
+              </div>
+
+              <div className="col-lg-6">
+                  <div className="card shadow-sm border-0">
+                      <div className="card-header bg-white">
+                          <h5 className="mb-0 fw-bold">Recent Activity</h5>
+                      </div>
+                      <div className="card-body">
+                          <ul className="list-unstyled mb-0">
+                              <li className="mb-3 pb-3 border-bottom">
+                                  <small style={{ color: '#6c757d' }}>2 mins ago</small>
+                                  <p className="mb-0">New vote cast by Voter #1023</p>
+                              </li>
+                              <li className="mb-3 pb-3 border-bottom">
+                                  <small style={{ color: '#6c757d' }}>15 mins ago</small>
+                                  <p className="mb-0">New voter registered: Tunde Bakare</p>
+                              </li>
+                              <li className="mb-0">
+                                  <small style={{ color: '#6c757d' }}>1 hour ago</small>
+                                  <p className="mb-0">Voting session started</p>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
   </body>
 </html>
