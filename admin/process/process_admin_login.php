@@ -13,15 +13,14 @@ if (isset($_POST["btn"])) {
         exit;
     }
 
-    // admin_login_process.php (or wherever the POST handler is)
     $response = $admin->login($username, $password);
 
-    if ($response === true) {           // ← compare with true
+    if ($response === true) {
         $_SESSION["msg"] = "You have logged in successfully";
         header("location:../admin_dashboard.php");
         exit;
     } else {
-        $_SESSION["errormsg"] = "Invalid username or password";   // ← better message
+        $_SESSION["errormsg"] = "Invalid username or password";
         header("location:../admin_login.php");
         exit;
     }

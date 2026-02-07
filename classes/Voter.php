@@ -23,11 +23,22 @@ class Voter extends Db
                 "SELECT id FROM voters WHERE email = ?"
             );
             $check->execute([$email]);
-
             if ($check->rowCount() > 0) {
                 return [
                     'success' => false,
                     'message' => 'Email already registered'
+                ];
+            }
+
+            $check = $this->ayconn->prepare(
+                "SELECT id FROM voters WHERE phone = ?"
+            );
+            $check->execute([$phone]);
+
+            if ($check->rowCount() > 0) {
+                return [
+                    'success' => false,
+                    'message' => 'Phone number already registered'
                 ];
             }
 

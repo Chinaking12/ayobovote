@@ -1,11 +1,14 @@
 <?php
 session_start();
 require_once 'classes/Admin.php';
-$admin = new Admin;
+require_once "admin_guard.php";
 
-$voter_count = $admin->fetch_voters();
+$admin = new Admin;
+$isAdmin = isset($_SESSION['admin_id']) && !empty($_SESSION['admin_id']);
+
+$voter_count = $admin->getAllVoters();
 $votes_count = $admin->fetch_votes();
-$candidates_count = $admin->fetch_candidates();
+$candidates_count = $admin->getAllCandidates();
 
 // echo "<pre>";
 //  print_r($votes_count);
@@ -156,7 +159,7 @@ $candidates_count = $admin->fetch_candidates();
                         </div>
                         <div>
                             <h6 class="text-muted mb-1 small">Total Registered Voters</h6>
-                            <h3 class="fw-bold mb-0"><?php echo count($voter_count['data']) ?></h3>
+                            <h3 class="fw-bold mb-0"><?php echo count($voter_count) ?></h3>
                         </div>
                     </div>
                 </div>
@@ -171,7 +174,6 @@ $candidates_count = $admin->fetch_candidates();
                         <div>
                             <h6 class="text-muted mb-1 small">Votes Cast</h6>
                             <h3 class="fw-bold mb-0"><?php echo count($votes_count['data']) ?></h3>
-                            <small class="text-success">(78.4% turnout)</small>
                         </div>
                     </div>
                 </div>
@@ -185,7 +187,7 @@ $candidates_count = $admin->fetch_candidates();
                         </div>
                         <div>
                             <h6 class="text-muted mb-1 small">Active Candidates</h6>
-                            <h3 class="fw-bold mb-0"><?php echo count($candidates_count['data']) ?></h3>
+                            <h3 class="fw-bold mb-0"><?php echo count($candidates_count) ?></h3>
                         </div>
                     </div>
                 </div>
@@ -204,16 +206,16 @@ $candidates_count = $admin->fetch_candidates();
 
                             <!-- Dropdown for Add Candidate + Register Voter -->
                             <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle action-btn w-100 text-start" 
-                                        type="button" 
-                                        id="adminActionsDropdown" 
-                                        data-bs-toggle="dropdown" 
-                                        aria-expanded="false">
+                                <button class="btn btn-primary dropdown-toggle action-btn w-100 text-start"
+                                    type="button"
+                                    id="adminActionsDropdown"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false">
                                     <i class="bi bi-gear me-2"></i> Admin Actions
                                 </button>
                                 <ul class="dropdown-menu w-100" aria-labelledby="adminActionsDropdown">
                                     <li>
-                                        <a class="dropdown-item" href="admin_create_candidate.php">
+                                        <a class="dropdown-item" href="admin_add_candidate.php">
                                             <i class="bi bi-person-plus me-2 text-primary"></i> Add New Candidate
                                         </a>
                                     </li>
@@ -222,18 +224,24 @@ $candidates_count = $admin->fetch_candidates();
                                             <i class="bi bi-person-check me-2 text-success"></i> Register New Voter
                                         </a>
                                     </li>
-                                    <!-- You can easily add more items later -->
-                                    <!-- <li><hr class="dropdown-divider"></li> -->
-                                    <!-- <li><a class="dropdown-item text-warning" href="#"><i class="bi bi-pencil-square me-2"></i> Edit Something</a></li> -->
+                                    <li>
+                                        <a class="dropdown-item" href="admin_manage_voters.php">
+                                            <i class="bi bi-people me-2 text-info"></i> Manage Voters
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="admin_manage_candidates.php">
+                                            <i class="bi bi-person-lines-fill me-2 text-warning"></i> Manage Candidates
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
 
-                            <!-- Keep the other two buttons as they were -->
                             <a href="results.php" class="btn btn-warning text-dark action-btn">
                                 <i class="bi bi-bar-chart me-2"></i> View Live Results
                             </a>
-                            <button class="btn btn-danger action-btn" 
-                                    onclick="return confirm('Are you sure you want to end the voting session? This action cannot be undone.');">
+                            <button class="btn btn-danger action-btn"
+                                onclick="return confirm('Are you sure you want to end the voting session? This action cannot be undone.');">
                                 <i class="bi bi-stop-circle me-2"></i> End Voting Session
                             </button>
                         </div>
