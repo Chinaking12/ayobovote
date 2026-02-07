@@ -4,6 +4,11 @@ require_once 'classes/Voter.php';
 
 $voter = new Voter();
 
+if (!isset($_SESSION['voter_logged_in'])) {
+  header("location: voter_login.php");
+  exit;
+}
+
 $results = $voter->getElectionResults();
 if (empty($results)) {
   $results = [

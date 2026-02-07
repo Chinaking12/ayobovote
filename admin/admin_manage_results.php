@@ -93,25 +93,63 @@ if (empty($results)) {
                     </div>
                 <?php else: ?>
                     <?php foreach ($results as $index => $candidate): ?>
+                        <?php
+                        // Safe access with fallback
+                        $candidate_id   = $candidate['id'] ?? 0;
+                        $name           = htmlspecialchars($candidate['name'] ?? $candidate['fullname'] ?? 'Unknown');
+                        $party          = htmlspecialchars($candidate['party'] ?? '—');
+                        $votes          = (int)($candidate['votes'] ?? 0);
+                        $percentage     = number_format($candidate['percentage'] ?? 0, 1);
+
+                        // Get voters only if we have valid ID
+                        $voters = ($candidate_id > 0) ? $admin->getVotersForCandidate($candidate_id) : [];
+                        $voter_count = count($voters);
+                        $voter_list = $voters ? implode(', ', array_map('htmlspecialchars', $voters)) : 'No votes yet';
+                        ?>
+
                         <div class="card mb-4 shadow-sm border-0">
                             <div class="card-body p-4">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                <!-- Clickable area -->
+                                <div class="d-flex justify-content-between align-items-center mb-3"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#voters-<?= $candidate_id ?>"
+                                    role="button"
+                                    aria-expanded="false"
+                                    aria-controls="voters-<?= $candidate_id ?>">
+
                                     <div>
-                                        <h5 class="fw-bold mb-1"><?= htmlspecialchars($candidate['name']) ?></h5>
-                                        <p class="mb-0 text-muted"><?= htmlspecialchars($candidate['party']) ?></p>
+                                        <h5 class="fw-bold mb-1"><?= $name ?></h5>
+                                        <p class="mb-0 text-muted"><?= $party ?></p>
                                     </div>
+
                                     <div class="text-end">
-                                        <h4 class="fw-bold mb-0"><?= number_format($candidate['percentage'], 1) ?>%</h4>
-                                        <small class="text-muted"><?= number_format($candidate['votes']) ?> votes</small>
+                                        <h4 class="fw-bold mb-0"><?= $percentage ?>%</h4>
+                                        <small class="text-muted">
+                                            <?= number_format($votes) ?> votes
+                                            <?php if ($voter_count > 0): ?>
+                                                <span class="text-primary">(click to see names)</span>
+                                            <?php endif; ?>
+                                        </small>
                                     </div>
                                 </div>
-                                <div class="progress">
+
+                                <!-- Progress bar -->
+                                <div class="progress mb-3">
                                     <div class="progress-bar <?= $index === 0 ? 'bg-success' : 'bg-primary' ?>"
                                         role="progressbar"
-                                        style="width: <?= $candidate['percentage'] ?>%"
-                                        aria-valuenow="<?= $candidate['percentage'] ?>"
+                                        style="width: <?= $percentage ?>%"
+                                        aria-valuenow="<?= $percentage ?>"
                                         aria-valuemin="0"
-                                        aria-valuemax="100">
+                                        aria-valuemax="100"></div>
+                                </div>
+
+                                <!-- Collapsible voter names -->
+                                <div class="collapse" id="voters-<?= $candidate_id ?>">
+                                    <div class="border-top pt-3">
+                                        <strong>Voters (<?= $voter_count ?>):</strong>
+                                        <p class="mb-0 mt-2">
+                                            <?= $voter_count > 0 ? $voter_list : '<span class="text-muted">No one has voted for this candidate yet.</span>' ?>
+                                        </p>
                                     </div>
                                 </div>
                             </div>

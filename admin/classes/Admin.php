@@ -234,6 +234,7 @@ class Admin extends Db
         try {
             $stmt = $this->ayconn->prepare("
             SELECT 
+                c.id,
                 c.name,
                 c.party,
                 COALESCE(SUM(CASE WHEN v.candidate_id = c.id THEN 1 ELSE 0 END), 0) AS votes
@@ -257,6 +258,19 @@ class Admin extends Db
             error_log("Results error: " . $e->getMessage());
             return [];
         }
+    }
+
+    public function getVotersForCandidate($candidate_id)
+    {
+        $stmt = $this->ayconn->prepare("
+        SELECT v.full_name
+        FROM votes vt
+        JOIN voters v ON vt.voter_id = v.id
+        WHERE vt.candidate_id = ?
+        ORDER BY v.full_name ASC
+    ");
+        $stmt->execute([$candidate_id]);
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
 
     public function isLoggedIn()
