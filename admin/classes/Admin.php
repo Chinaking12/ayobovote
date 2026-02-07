@@ -176,12 +176,34 @@ class Admin extends Db
     public function deleteVoter($id)
     {
         try {
+            // Check if voter has any votes
+            $check = $this->ayconn->prepare("SELECT COUNT(*) FROM votes WHERE voter_id = ?");
+            $check->execute([$id]);
+            $voteCount = $check->fetchColumn();
+
+            if ($voteCount > 0) {
+                return [
+                    'success' => false,
+                    'message' => 'Cannot delete this voter because they have already voted.'
+                ];
+            }
+
+            // Safe to delete
             $stmt = $this->ayconn->prepare("DELETE FROM voters WHERE id = ?");
             $stmt->execute([$id]);
-            return $stmt->rowCount() > 0;
+
+            $deleted = $stmt->rowCount() > 0;
+
+            return [
+                'success' => $deleted,
+                'message' => $deleted ? 'Voter deleted successfully' : 'Voter not found'
+            ];
         } catch (PDOException $e) {
             error_log("Delete voter error: " . $e->getMessage());
-            return false;
+            return [
+                'success' => false,
+                'message' => 'Database error: ' . $e->getMessage()
+            ];
         }
     }
 

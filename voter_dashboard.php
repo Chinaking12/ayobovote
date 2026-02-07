@@ -18,6 +18,10 @@ if (!$candidates['success']) {
 
 $candidates = $candidates['candidates'];
 $status = $voter->getElectionStatus();
+$winner = null;
+if (!$status['is_active']) {
+  $winner = $voter->getElectionWinner(); // returns array or null
+}
 
 ?>
 
@@ -125,6 +129,33 @@ $status = $voter->getElectionStatus();
       cursor: not-allowed;
     }
 
+    .winner-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .winner-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(25, 135, 84, 0.18) !important;
+    }
+
+    .winner-card .bi-trophy-fill {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.08);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
     @media (max-width: 576px) {
       .candidate-avatar {
         width: 90px;
@@ -153,6 +184,68 @@ $status = $voter->getElectionStatus();
   <!-- Main Content -->
   <div class="container py-5">
 
+    <?php if (!$status['is_active']): ?>
+
+      <div class="alert alert-danger mb-4 shadow-sm text-center py-3" style="font-size: 0.95rem;">
+        <div class="mb-2">
+          <i class="bi bi-lock-fill me-2" style="font-size: 1.1rem;"></i>
+          <strong>Voting has ended</strong>
+        </div>
+
+        <p class="mb-3" style="margin-bottom: 0.75rem !important;">
+          The election is now closed. Thank you for participating.
+        </p>
+
+        <!-- Small, simple link/button -->
+        <button
+          class="btn btn-danger btn-sm px-4 py-2"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#winnerReveal"
+          aria-expanded="false"
+          aria-controls="winnerReveal"
+          style="font-size: 0.9rem;">
+          See the winner
+        </button>
+
+        <!-- Winner reveal - small and compact -->
+        <div class="collapse mt-3" id="winnerReveal">
+          <?php if ($winner): ?>
+            <div class="card border-0 shadow-sm bg-light" style="max-width: 400px; margin: 0 auto;">
+              <div class="card-body text-center py-4 px-4">
+                <i class="bi bi-trophy-fill text-warning me-2" style="font-size: 1.5rem;"></i>
+
+                <h6 class="fw-bold mb-1" style="font-size: 1.1rem;">
+                  <?= htmlspecialchars($winner['name']) ?>
+                </h6>
+
+                <p class="text-muted mb-2" style="font-size: 0.9rem;">
+                  is officially the winner for
+                  <strong><?= htmlspecialchars($winner['position']) ?></strong>
+                </p>
+
+                <div class="d-flex justify-content-center gap-4 small">
+                  <div>
+                    <small class="text-muted">Party</small><br>
+                    <?= htmlspecialchars($winner['party']) ?>
+                  </div>
+                  <div>
+                    <small class="text-muted">Votes</small><br>
+                    <?= number_format($winner['votes']) ?>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <?php else: ?>
+            <div class="text-muted small text-center py-3">
+              No clear winner could be determined.
+            </div>
+          <?php endif; ?>
+        </div>
+      </div>
+
+    <?php endif; ?>
+
     <div class="alert <?= $status['is_active'] ? 'alert-success' : 'alert-danger' ?> mb-4 shadow-sm">
       <div class="d-flex align-items-center">
         <i class="bi <?= $status['is_active'] ? 'bi-play-circle-fill' : 'bi-stop-circle-fill' ?> fs-4 me-3"></i>
@@ -178,10 +271,17 @@ $status = $voter->getElectionStatus();
         <p class="text-muted mb-1">Choose your preferred candidate for Chairman</p>
         <p class="mb-0">Welcome back, <strong><?= $_SESSION['voter_name']; ?></strong></p>
       </div>
-      <a href="results.php" class="btn btn-outline-primary d-flex align-items-center">
-        <i class="bi bi-bar-chart me-2"></i>
-        View Live Results
-      </a>
+      <?php if (!$status['is_active']) { ?>
+        <a href="results.php" class="btn btn-outline-primary d-flex align-items-center disabled">
+          <i class="bi bi-bar-chart me-2"></i>
+          View Live Results
+        </a>
+      <?php } else { ?>
+        <a href="results.php" class="btn btn-outline-primary d-flex align-items-center">
+          <i class="bi bi-bar-chart me-2"></i>
+          View Live Results
+        </a>
+      <?php } ?>
     </div>
 
     <!-- Candidates -->
@@ -235,15 +335,18 @@ $status = $voter->getElectionStatus();
           Once submitted, your vote cannot be changed.
         </p>
 
-        <button
-          type="submit"
-          name="btn"
-          id="submitVoteBtn"
-          class="btn btn-primary btn-lg px-5 py-3 btn-submit"
-          disabled>
-          <i class="bi bi-check2-square me-2"></i>
-          Submit My Vote
-        </button>
+        <?php if (!$status['is_active']) { ?>
+          <div class="alert alert-warning mb-4">
+            <i class="bi bi-exclamation-triangle me-2"></i>
+            Voting is currently closed. You cannot submit your vote at this time.
+          </div>
+        <?php } else { ?>
+          <button type="submit" class="btn btn-primary btn-lg px-5 py-3 btn-submit" name="btn">
+            <i class="bi bi-check2-square me-2"></i>
+            Submit My Vote
+          </button>
+        <?php } ?>
+
       </div>
     </form>
 

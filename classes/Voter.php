@@ -140,7 +140,7 @@ class Voter extends Db
             }
 
             // 2. Check if voting is still open (add this check!)
-            $statusCheck = $this->ayconn->prepare("SELECT is_active FROM election_status WHERE id = 1");
+            $statusCheck = $this->ayconn->prepare("SELECT is_active FROM voting_status WHERE id = 1");
             $statusCheck->execute();
             $status = $statusCheck->fetch(PDO::FETCH_ASSOC);
 
@@ -263,6 +263,43 @@ class Voter extends Db
                 'message'           => 'Unable to check status due to database error - voting assumed open'
             ];
         }
+    }
+
+    public function getElectionWinner()
+    {
+        $stmt = $this->ayconn->prepare("
+        SELECT 
+            c.id,
+            c.name,
+            c.position,
+            c.party,
+            COUNT(v.id) AS votes
+        FROM candidates c
+        LEFT JOIN votes v ON c.id = v.candidate_id
+        GROUP BY c.id
+        ORDER BY votes DESC
+        LIMIT 1
+    ");
+        $stmt->execute();
+        $winner = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        //Check if there's a clear winner (no tie)
+        $second_stmt = $this->ayconn->prepare("
+        SELECT COUNT(v.id) AS votes
+        FROM candidates c
+        LEFT JOIN votes v ON c.id = v.candidate_id
+        GROUP BY c.id
+        ORDER BY votes DESC
+        LIMIT 1 OFFSET 1
+    ");
+        $second_stmt->execute();
+        $second = $second_stmt->fetchColumn();
+
+        if ($winner && $winner['votes'] > $second) {
+            return $winner;
+        }
+
+        return null; // No clear winner (tie or no votes)
     }
 
     public function logout()

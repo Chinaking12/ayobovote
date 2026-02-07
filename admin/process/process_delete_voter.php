@@ -18,12 +18,12 @@ if ($voter_id <= 0) {
     exit();
 }
 
-$deleted = $admin->deleteVoter($voter_id);
+$result = $admin->deleteVoter($voter_id);
 
-if ($deleted) {
-    $_SESSION['msg'] = "Voter deleted successfully";
+if ($result['success']) {
+    $_SESSION['msg'] = $result['message'];
 } else {
-    $_SESSION['errormsg'] = "Failed to delete voter. It may not exist or there was a database error.";
+    $_SESSION['errormsg'] = $result['message'];
 }
 
 header("location: ../admin_manage_voters.php");
